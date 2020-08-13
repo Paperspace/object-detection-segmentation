@@ -51,10 +51,13 @@ from detectron2.utils.events import (
 )
 
 logger = logging.getLogger("detectron2")
-os.environ["DETECTRON2_DATASETS"] = "/data"
-#dataset_dir = os.path.join(os.getenv("DETECTRON2_DATASETS", "datasets"), "coco")
 
-def get_evaluator(cfg, dataset_name, output_folder=None):
+
+from detectron2.data.datasets import register_coco_instances
+register_coco_instances("coco_sample", {}, "coco/annotations/instances_val2017_100.json", "/data/coco/train2017")
+
+
+def get_evaluator(cfg, dataset_name='coco_sample', output_folder=None):
     """
     Create evaluator(s) for a given dataset.
     This uses the special metadata "evaluator_type" associated with each builtin dataset.
