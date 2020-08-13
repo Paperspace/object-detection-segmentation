@@ -17,7 +17,7 @@ WINDOW_NAME = "COCO detections"
 
 
 def setup_cfg(args):
-    # load config from file and command-line arguments
+    # load configs from file and command-line arguments
     cfg = get_cfg()
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
@@ -32,10 +32,10 @@ def setup_cfg(args):
 def get_parser():
     parser = argparse.ArgumentParser(description="Paperspace Detectron2 demo for builtin models")
     parser.add_argument(
-        "--config-file",
+        "--configs-file",
         default="configs/quick_schedules/mask_rcnn_R_50_FPN_inference_acc_test.yaml",
         metavar="FILE",
-        help="path to config file",
+        help="path to configs file",
     )
     parser.add_argument("--webcam", action="store_true", help="Take inputs from webcam.")
     parser.add_argument("--video-input", help="Path to video file.")
@@ -59,7 +59,7 @@ def get_parser():
     )
     parser.add_argument(
         "--opts",
-        help="Modify config options using the command-line 'KEY VALUE' pairs",
+        help="Modify configs options using the command-line 'KEY VALUE' pairs",
         default=[],
         nargs=argparse.REMAINDER,
     )
