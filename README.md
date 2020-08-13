@@ -60,12 +60,13 @@ gradient apiKey XXXXXXXXXXXXXXXXXXX
 ```
 gradient experiments run singlenode \
   --name mask_rcnn \
-  --projectId <your-project-id> \
+  --projectId <some project> \
   --container devopsbay/detectron2-cuda:v0 \
   --machineType p2.xlarge \
-  --command "python training/train_net.py --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025 --config-file ./configs/mask_rcnn_R_50_FPN_1x.yaml" \
-  --workspaceUrl https://github.com/Paperspace/object-detection-segmentation \
-  --datasetName coco
-  --datasetUri s3://fast-ai-coco/train2017.zip
+  --command "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025" \
+  --workspace https://github.com/Paperspace/object-detection-segmentation.git \
+  --datasetName coco \
+  --datasetUri s3://fast-ai-coco/train2017.zip \
+  --clusterId <cluster id>
 ```
 
