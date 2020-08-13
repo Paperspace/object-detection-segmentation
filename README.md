@@ -1,18 +1,6 @@
 
 ## Paperspace - PyTorch-based modular object detection based on Detectron Demo
 
-### Gradient CLI Installation
-
-How to install Gradient CLI - [docs](https://docs.paperspace.com/gradient/get-started/install-the-cli)
-
-```
-pip install gradient --pre
-```
-Then make sure to [obtain an API Key](https://docs.paperspace.com/gradient/get-started/install-the-cli#obtaining-an-api-key), and then:
-```
-gradient apiKey XXXXXXXXXXXXXXXXXXX
-```
-
 ### Training & Evaluation
 
 Please check out [docs on using Experiments with Paperspace](https://docs.paperspace.com/gradient/experiments/using-experiments)
@@ -35,7 +23,7 @@ Under this directory, the script will look for datasets in the structure describ
 # Example Code 
 dataset_dir = os.path.join(os.getenv("DETECTRON2_DATASETS", "/data"), "coco")
 ```
-## Expected dataset structure for COCO instance/keypoint detection:
+#### Expected dataset structure for COCO instance/keypoint detection:
 
 ```
 coco/
@@ -50,13 +38,27 @@ You can use the 2014 version of the dataset as well.
 
 You can download a tiny version of the COCO dataset, with `training/download_coco.sh`.
 
-### COCO Dataset
+#### COCO Dataset
 Probably the most widely used dataset today for object localization is COCO: Common Objects in Context. Provided here are all the files from the 2017 version, along with an additional subset dataset created by fast.ai. Details of each COCO dataset is available from the COCO dataset page. The fast.ai subset contains all images that contain one of five selected categories, restricting objects to just those five categories; the categories are: chair couch tv remote book vase.
 
 [fast.ai subset](https://s3.amazonaws.com/fast-ai-coco/coco_sample.tgz)
 [Train images](https://s3.amazonaws.com/fast-ai-coco/train2017.zip)
 
-then run:
+## Run Training on Gradient
+
+### Gradient CLI Installation
+
+How to install Gradient CLI - [docs](https://docs.paperspace.com/gradient/get-started/install-the-cli)
+
+```
+pip install gradient --pre
+```
+Then make sure to [obtain an API Key](https://docs.paperspace.com/gradient/get-started/install-the-cli#obtaining-an-api-key), and then:
+```
+gradient apiKey XXXXXXXXXXXXXXXXXXX
+```
+
+### Train on a single GPU
 ```
 gradient experiments run singlenode \
   --name mnist \
