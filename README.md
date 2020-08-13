@@ -36,7 +36,14 @@ coco/
 
 You can use the 2014 version of the dataset as well.
 
-You can download a tiny version of the COCO dataset, with `./prepare_for_tests.sh`.
+You can download a tiny version of the COCO dataset, with `training/download_coco.sh`.
+
+### COCO Dataset
+Probably the most widely used dataset today for object localization is COCO: Common Objects in Context. Provided here are all the files from the 2017 version, along with an additional subset dataset created by fast.ai. Details of each COCO dataset is available from the COCO dataset page. The fast.ai subset contains all images that contain one of five selected categories, restricting objects to just those five categories; the categories are: chair couch tv remote book vase.
+
+[fast.ai subset](https://s3.amazonaws.com/fast-ai-coco/coco_sample.tgz)
+[Train images](https://s3.amazonaws.com/fast-ai-coco/train2017.zip)
+
 then run:
 ```
 gradient experiments run singlenode \
@@ -45,5 +52,8 @@ gradient experiments run singlenode \
   --container devopsbay/detectron2-cuda:v0 \
   --machineType p2.xlarge \
   --command "python training/train_net.py --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025 --config-file ./configs/mask_rcnn_R_50_FPN_1x.yaml" \
-  --workspaceUrl https://github.com/Paperspace/object-detection-segmentation
+  --workspaceUrl https://github.com/Paperspace/object-detection-segmentation \
+  --datasetName coco
+  --datasetUri s3://fast-ai-coco/train2017.zip
 ```
+
