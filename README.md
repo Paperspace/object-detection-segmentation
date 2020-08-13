@@ -1,6 +1,18 @@
 
 ## Paperspace - PyTorch-based modular object detection based on Detectron Demo
 
+### Gradient CLI Installation
+
+How to install Gradient CLI - [docs](https://docs.paperspace.com/gradient/get-started/install-the-cli)
+
+```
+pip install gradient --pre
+```
+Then make sure to [obtain an API Key](https://docs.paperspace.com/gradient/get-started/install-the-cli#obtaining-an-api-key), and then:
+```
+gradient apiKey XXXXXXXXXXXXXXXXXXX
+```
+
 ### Training & Evaluation
 
 Please check out [docs on using Experiments with Paperspace](https://docs.paperspace.com/gradient/experiments/using-experiments)
