@@ -1,0 +1,8 @@
+opencv-python
+numpy
+flask
+pillow
+gunicorn
+requests==2.22.0
+
+
