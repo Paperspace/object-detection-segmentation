@@ -65,7 +65,6 @@ class Detector:
 
 		# get metadata
 		metadata = MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0])
-
 		# visualise
 		v = Visualizer(rgb_image[:, :, ::-1], metadata=metadata, scale=1.2)
 		v = v.draw_instance_predictions(outputs["instances"].to("cpu"))
