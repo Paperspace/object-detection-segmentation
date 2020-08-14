@@ -1,10 +1,18 @@
+![GitHubSplash](https://user-images.githubusercontent.com/585865/65443342-e630d300-ddfb-11e9-9bcd-de1d2033ea60.png)
 
-## Paperspace - PyTorch-based modular object detection based on Detectron Demo
+Paperspace - PyTorch-based modular object detection based on Detectron Demo
+=================
+<br>
 
+**Get started:** [Create Account](https://www.paperspace.com/account/signup?gradient=true) • [Install CLI](https://docs.paperspace.com/gradient/get-started/install-the-cli) • [Tutorials](https://docs.paperspace.com/gradient/tutorials) • [Docs](https://docs.paperspace.com/gradient)
+
+**Resources:** [Website](https://gradient.paperspace.com/) • [Blog](https://blog.paperspace.com/) • [Support](https://support.paperspace.com/hc/en-us) • [Contact Sales](https://use.paperspace.com/contact-sales)
+
+<br>
+=================
 ### Training & Evaluation
 
 Please check out [docs on using Experiments with Paperspace](https://docs.paperspace.com/gradient/experiments/using-experiments)
-
 
 We provide an example script in "training/train_net.py", that is made to train your model.
 You may want to use it as a reference to write your own training script.
