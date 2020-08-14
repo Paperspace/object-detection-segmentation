@@ -70,3 +70,18 @@ gradient experiments run singlenode \
   --clusterId <cluster id>
 ```
 
+## How to deploy model on Gradient
+
+This example will load previously trained model and launch a web app application with simple gui 
+
+```
+gradient deployments create \
+  --name mask_rcnn4 --instanceCount 1 \
+  --imageUrl devopsbay/detectron2-cuda:v0 \
+  --machineType p2.xlarge \
+  --command "sudo python demo/app.py" \
+  --workspace https://github.com/Paperspace/object-detection-segmentation.git \               
+  --deploymentType Custom \
+  --clusterId <cluster id> \
+  --modelId <model id>
+```
