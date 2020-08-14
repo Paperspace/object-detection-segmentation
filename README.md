@@ -57,6 +57,9 @@ gradient apiKey XXXXXXXXXXXXXXXXXXX
 ```
 
 ### Train on a single GPU
+
+_Note: training on a single will take a long time, so be prepared to wait!_
+
 ```
 gradient experiments run singlenode \
   --name mask_rcnn \
@@ -69,6 +72,8 @@ gradient experiments run singlenode \
   --datasetUri s3://fast-ai-coco/train2017.zip \
   --clusterId <cluster id>
 ```
+The coco dataset is downloaded to the `./data/coco/traing2017` directory.
+Model results are stored in the `./models` directory.
 
 ## How to deploy model on Gradient
 
@@ -85,3 +90,4 @@ gradient deployments create \
   --clusterId <cluster id> \
   --modelId <model id>
 ```
+![Example](demo/samples/detect.jpeg?raw=true "Example Object Detection")
