@@ -1,3 +1,4 @@
+import cv2
 import cv2 as cv
 import json
 from detectron2.engine import DefaultPredictor
@@ -55,7 +56,8 @@ class Detector:
 
 		predictor = DefaultPredictor(self.cfg)
 		im = cv.imread(file)
-		outputs = predictor(im)
+		rgb_image = im[:, :, ::-1]
+		outputs = predictor(rgb_image)
 
 		# with open(self.curr_dir+'/data.txt', 'w') as fp:
 		# 	json.dump(outputs['instances'], fp)
@@ -65,12 +67,11 @@ class Detector:
 		metadata = MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0])
 
 		# visualise
-		v = Visualizer(im[:, :, ::-1], metadata=metadata, scale=1.2)
+		v = Visualizer(rgb_image[:, :, ::-1], metadata=metadata, scale=1.2)
 		v = v.draw_instance_predictions(outputs["instances"].to("cpu"))
 
 		# get image 
 		img = Image.fromarray(np.uint8(v.get_image()[:, :, ::-1]))
-
 		# write to jpg
 		# cv.imwrite('img.jpg',v.get_image())
 
