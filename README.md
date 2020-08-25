@@ -1,6 +1,6 @@
 ![GitHubSplash](https://user-images.githubusercontent.com/585865/65443342-e630d300-ddfb-11e9-9bcd-de1d2033ea60.png)
 
-Paperspace - PyTorch-based modular object detection based on Detectron Demo
+Gradient - PyTorch-based modular object detection based on Detectron Demo
 =================
 <br>
 
@@ -13,7 +13,7 @@ Paperspace - PyTorch-based modular object detection based on Detectron Demo
 
 ### Training & Evaluation
 
-Please check out [docs on using Experiments with Paperspace](https://docs.paperspace.com/gradient/experiments/using-experiments)
+Please check out [docs on using Experiments with Gradient](https://docs.paperspace.com/gradient/experiments/using-experiments)
 
 We provide an example script in "training/train_net.py", that is made to train your model.
 You may want to use it as a reference to write your own training script.
@@ -21,7 +21,7 @@ You may want to use it as a reference to write your own training script.
 ### Setup Dataset
 
 This demo has builtin support for a few datasets.
-Please check out [docs on using Datasets with Paperspace](https://docs.paperspace.com/gradient/experiments/using-experiments/experiment-datasets)
+Please check out [docs on using Datasets with Gradient](https://docs.paperspace.com/gradient/experiments/using-experiments/experiment-datasets)
 
 The datasets are assumed to exist in a directory `/data/DATASET`.
 Under this directory, the script will look for datasets in the structure described below, if needed.
@@ -83,6 +83,27 @@ gradient experiments run singlenode \
 ```
 The coco dataset is downloaded to the `./data/coco/traing2017` directory.
 Model results are stored in the `./models` directory.
+
+### Running distributed multi-node on a Gradient Enterprise private cloud cluster
+In order to run a an experiment on a Gradient Enterprise private cloud cluster, we need to add few additional parameters:
+```
+gradient experiments run multinode \
+  --name mask_rcnn_multinode \
+  --projectId <some project> \
+  --workerContainer devopsbay/detectron2-cuda:v0 \
+  --workerMachineType p2.xlarge \
+  --workerCount 7 \
+  --parameterServerContainer devopsbay/detectron2-cuda:v0 \
+  --parameterServerMachineType p2.xlarge \
+  --parameterServerCount 1 \
+  --experimentType GRPC \
+  --workerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8" \
+  --parameterServerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8" \
+  --workspace https://github.com/Paperspace/object-detection-segmentation.git \
+  --datasetName coco \
+  --datasetUri s3://fast-ai-coco/train2017.zip \
+  --clusterId <cluster id>
+```
 
 ## How to deploy model on Gradient
 
