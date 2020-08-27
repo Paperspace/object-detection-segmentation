@@ -84,7 +84,7 @@ gradient experiments run singlenode \
 The coco dataset is downloaded to the `./data/coco/traing2017` directory.
 Model results are stored in the `./models` directory.
 
-### Running distributed multi-node on a Gradient Enterprise private cloud cluster
+### Running distributed training on a Gradient private cluster
 In order to run a an experiment on a [Gradient private cluster](https://docs.paperspace.com/gradient/gradient-private-cloud/about), we need to add few additional parameters:
 ```
 gradient experiments run multinode \
