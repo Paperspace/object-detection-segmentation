@@ -77,8 +77,8 @@ gradient experiments run singlenode \
   --machineType p2.xlarge \
   --command "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025" \
   --workspace https://github.com/Paperspace/object-detection-segmentation.git \
-  --datasetName coco \
-  --datasetUri s3://fast-ai-coco/train2017.zip \
+  --datasetName small_coco \
+  --datasetUri s3://paperspace-tiny-coco/small_coco.zip \
   --clusterId <cluster id>
 ```
 The coco dataset is downloaded to the `./data/coco/traing2017` directory.
@@ -100,8 +100,8 @@ gradient experiments run multinode \
   --workerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8" \
   --parameterServerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8" \
   --workspace https://github.com/Paperspace/object-detection-segmentation.git \
-  --datasetName coco \
-  --datasetUri s3://fast-ai-coco/train2017.zip \
+  --datasetName small_coco \
+  --datasetUri s3://paperspace-tiny-coco/small_coco.zip \
   --clusterId <cluster id>
 ```
 
