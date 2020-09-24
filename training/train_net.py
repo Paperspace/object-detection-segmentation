@@ -54,7 +54,7 @@ logger = logging.getLogger("detectron2")
 
 
 from detectron2.data.datasets import register_coco_instances
-register_coco_instances("coco_sample", {}, "/data/small_coco/instances_train2017_small.json", "/data/small_coco/train_2017_small")
+register_coco_instances("coco_sample", {}, "/data/small_coco/small_coco/instances_train2017_small.json", "/data/small_coco/small_coco/train_2017_small")
 
 
 def get_evaluator(cfg, dataset_name='coco_sample', output_folder=None):
