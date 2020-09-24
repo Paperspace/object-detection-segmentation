@@ -4,9 +4,9 @@ Gradient - PyTorch-based modular object detection based on Detectron Demo
 =================
 <br>
 
-**Get started:** [Create Account](https://www.paperspace.com/account/signup?gradient=true) • [Install CLI](https://docs.paperspace.com/gradient/get-started/install-the-cli) • [Tutorials](https://docs.paperspace.com/gradient/tutorials) • [Docs](https://docs.paperspace.com/gradient)
+**Get started:** [Create Account](https://console.paperspace.com/signup?gradient=true) • [Install CLI](https://docs.paperspace.com/gradient/get-started/install-the-cli) • [Tutorials](https://docs.paperspace.com/gradient/tutorials) • [Docs](https://docs.paperspace.com/gradient)
 
-**Resources:** [Website](https://gradient.paperspace.com/) • [Blog](https://blog.paperspace.com/) • [Support](https://support.paperspace.com/hc/en-us) • [Contact Sales](https://use.paperspace.com/contact-sales)
+**Resources:** [Website](https://gradient.paperspace.com/) • [Blog](https://blog.paperspace.com/) • [Support](https://support.paperspace.com/hc/en-us) • [Contact Sales](https://info.paperspace.com/contact-sales)
 
 <br>
 =================
@@ -15,12 +15,12 @@ Gradient - PyTorch-based modular object detection based on Detectron Demo
 
 Please check out [docs on using Experiments with Gradient](https://docs.paperspace.com/gradient/experiments/using-experiments)
 
-We provide an example script in "training/train_net.py", that is made to train your model.
-You may want to use it as a reference to write your own training script.
+We provide an example script in "training/train_net.py" that is made to train your model. 
+You can use this as a reference to write your own training script.
 
 ### Setup Dataset
 
-This demo has builtin support for a few datasets.
+This demo has built-in support for a few datasets.
 Please check out [docs on using Datasets with Gradient](https://docs.paperspace.com/gradient/experiments/using-experiments/experiment-datasets)
 
 The datasets are assumed to exist in a directory `/data/DATASET`.
@@ -58,7 +58,7 @@ Probably the most widely used dataset today for object localization is COCO: Com
 How to install Gradient CLI - [docs](https://docs.paperspace.com/gradient/get-started/install-the-cli)
 
 ```
-pip install gradient --pre
+pip install gradient
 ```
 Then make sure to [obtain an API Key](https://docs.paperspace.com/gradient/get-started/install-the-cli#obtaining-an-api-key), and then:
 ```
@@ -84,8 +84,8 @@ gradient experiments run singlenode \
 The coco dataset is downloaded to the `./data/coco/traing2017` directory.
 Model results are stored in the `./models` directory.
 
-### Running distributed multi-node on a Gradient Enterprise private cloud cluster
-In order to run a an experiment on a Gradient Enterprise private cloud cluster, we need to add few additional parameters:
+### Running distributed training on a Gradient private cluster
+In order to run a an experiment on a [Gradient private cluster](https://docs.paperspace.com/gradient/gradient-private-cloud/about), we need to add few additional parameters:
 ```
 gradient experiments run multinode \
   --name mask_rcnn_multinode \
@@ -107,7 +107,7 @@ gradient experiments run multinode \
 
 ## How to deploy model on Gradient
 
-This example will load previously trained model and launch a web app application with simple gui 
+This example will load previously trained model and launch a web app application with simple interface. 
 
 ```
 gradient deployments create \
