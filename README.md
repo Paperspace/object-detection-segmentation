@@ -75,7 +75,7 @@ gradient experiments run singlenode \
   --projectId <some project> \
   --container devopsbay/detectron2-cuda:v0 \
   --machineType p2.xlarge \
-  --command "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025" \
+  --command "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
   --workspace https://github.com/Paperspace/object-detection-segmentation.git \
   --datasetName small_coco \
   --datasetUri s3://paperspace-tiny-coco/small_coco.zip \
@@ -97,8 +97,8 @@ gradient experiments run multinode \
   --parameterServerMachineType p2.xlarge \
   --parameterServerCount 1 \
   --experimentType GRPC \
-  --workerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8" \
-  --parameterServerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8" \
+  --workerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
+  --parameterServerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
   --workspace https://github.com/Paperspace/object-detection-segmentation.git \
   --datasetName small_coco \
   --datasetUri s3://paperspace-tiny-coco/small_coco.zip \
