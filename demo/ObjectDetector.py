@@ -41,6 +41,7 @@ class Detector:
 		else:
 			# set device to cpu
 			self.cfg.MODEL.DEVICE = "cpu"
+		self.cfg.MODEL.DEVICE = "cpu"
 
 		# get Model
 
