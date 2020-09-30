@@ -142,7 +142,7 @@ def do_train(cfg, model, resume=False):
     writers = (
         [
             CommonMetricPrinter(max_iter),
-            JSONWriter(os.path.join(cfg.OUTPUT_DIR, "metrics.json")),
+            JSONWriter(os.path.join(cfg.OUTPUT_DIR, "gradient-model-metadata.json")),
             TensorboardXWriter(cfg.OUTPUT_DIR),
         ]
         if comm.is_main_process()
