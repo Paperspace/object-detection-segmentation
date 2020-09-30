@@ -43,18 +43,14 @@ class Detector:
 			self.cfg.MODEL.DEVICE = "cpu"
 
 		# get Model
-		try:
-			model_path = os.path.abspath('/artifacts/models/detectron/model_final.pth')
-			if os.path.isfile(model_path):
-				print('Using Trained Model {}'.format(model_path), flush=True)
-				self.cfg.MODEL.WEIGHTS = model_path
-			else:
-				print('No Model Found at {}'.format(model_path), flush=True)
-				model_path = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/"+self.model)
-				self.cfg.MODEL.WEIGHTS = model_path
-		except Exception as e:
-			print(str(e), flush=True)
 
+		model_path = os.path.abspath('/models/detectron/model_final.pth')
+		if os.path.isfile(model_path):
+			print('Using Trained Model {}'.format(model_path), flush=True)
+		else:
+			print('No Model Found at {}'.format(model_path), flush=True)
+			model_path = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/"+self.model)
+		self.cfg.MODEL.WEIGHTS = model_path
 		# set the testing threshold for this model
 		self.cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7  
 
