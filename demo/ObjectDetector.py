@@ -1,3 +1,5 @@
+import os
+
 import cv2
 import cv2 as cv
 import json
@@ -26,12 +28,25 @@ class Detector:
 		# self.cfg.merge_from_file("test.yaml")
 		self.cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/"+self.model)) 
 
-		# set device to cpu
-		self.cfg.MODEL.DEVICE = "cpu"
+		# Additional Info when using cuda
+		if torch.cuda.is_available():
+			self.cfg.MODEL.DEVICE = "gpu"
+			print(torch.cuda.get_device_name(0))
+			print('Memory Usage:')
+			print('Allocated:', round(torch.cuda.memory_allocated(0) / 1024 ** 3, 1), 'GB')
+			print('Cached:   ', round(torch.cuda.memory_cached(0) / 1024 ** 3, 1), 'GB')
+		else:
+			# set device to cpu
+			self.cfg.MODEL.DEVICE = "cpu"
 
-		# get weights 
-		self.cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/"+self.model)
-		#self.cfg.MODEL.WEIGHTS = "model_final_f10217.pkl"
+		# get Model
+		try:
+			model_dir = os.path.abspath(os.environ.get('PS_MODEL_PATH'))
+			model_path = os.path.join(model_dir, '/detectron/model_final.pth')
+		except:
+			model_path = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/"+self.model)
+
+		self.cfg.MODEL.WEIGHTS = model_path
 
 		# set the testing threshold for this model
 		self.cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7  
