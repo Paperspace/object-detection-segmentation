@@ -60,7 +60,8 @@ def run_inference(img_path = 'file.jpg'):
 
 @app.route("/")
 def index():
-	return render_template('index.html')
+	url = request.url
+	return render_template('index.html', url=url)
 
 
 @app.route("/detect", methods=['POST', 'GET'])
@@ -97,7 +98,6 @@ def upload():
 		# failure
 		except:
 			return render_template("failure.html")
-
 
 	# run inference
 	# result_img = run_inference_transform()
