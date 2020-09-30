@@ -47,7 +47,7 @@
 
 <h2>Detectron2 Instance Segmentation</h2>
 <p>Upload your file</p>
-<form action = "{{ url }}model-serving/{{ model_id}}/detect" method = "POST" enctype = "multipart/form-data">
+<form action = "/model-serving/{{ model_id}}/detect" method = "POST" enctype = "multipart/form-data">
 	<input type = "file" name = "file" />
 	<input name = "submit" type = "submit"/>
 </form>

@@ -64,9 +64,8 @@ def run_inference(img_path='file.jpg'):
 
 @app.route("/")
 def index():
-    url = request.url
     model_id = os.environ.get('PAPERSPACE_METRIC_WORKLOAD_ID', 'model_id')
-    return render_template('index.html', url=url, model_id=model_id)
+    return render_template('index.html', model_id=model_id)
 
 
 @app.route("/detect", methods=['POST', 'GET'])
