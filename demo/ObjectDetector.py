@@ -33,7 +33,7 @@ class Detector:
 
 		# Additional Info when using cuda
 		if torch.cuda.is_available():
-			self.cfg.MODEL.DEVICE = "gpu"
+			self.cfg.MODEL.DEVICE = "cuda"
 			print(torch.cuda.get_device_name(0), flush=True)
 			print('Memory Usage:', flush=True)
 			print('Allocated:', round(torch.cuda.memory_allocated(0) / 1024 ** 3, 1), 'GB', flush=True)
