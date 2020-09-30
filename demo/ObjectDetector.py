@@ -46,6 +46,7 @@ class Detector:
 		try:
 			model_dir = os.path.abspath(os.environ.get('PS_MODEL_PATH'))
 			model_path = os.path.join(model_dir, '/detectron/model_final.pth')
+			print('Using Trained Model {}'.format(model_path))
 		except OSError:
 			model_path = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/"+self.model)
 
@@ -96,7 +97,7 @@ class Detector:
 		logger.add_counter("inference_count")
 		logger["inference_count"].inc()
 		logger.push_metrics()
-		
+
 		return img
 
 
