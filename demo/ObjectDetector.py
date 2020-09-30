@@ -14,6 +14,9 @@ import torch
 import numpy as np
 from PIL import Image
 
+from gradient_utils.metrics import MetricsLogger
+
+
 class Detector:
 
 	def __init__(self):
@@ -43,7 +46,7 @@ class Detector:
 		try:
 			model_dir = os.path.abspath(os.environ.get('PS_MODEL_PATH'))
 			model_path = os.path.join(model_dir, '/detectron/model_final.pth')
-		except:
+		except OSError:
 			model_path = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/"+self.model)
 
 		self.cfg.MODEL.WEIGHTS = model_path
@@ -89,6 +92,11 @@ class Detector:
 		# write to jpg
 		# cv.imwrite('img.jpg',v.get_image())
 
+		logger = MetricsLogger()
+		logger.add_counter("inference_count")
+		logger["inference_count"].inc()
+		logger.push_metrics()
+		
 		return img
 
 
