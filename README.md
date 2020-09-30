@@ -110,14 +110,16 @@ gradient experiments run multinode \
 This example will load previously trained model and launch a web app application with simple interface. 
 
 ```
-gradient deployments create \
-  --name mask_rcnn4 --instanceCount 1 \
-  --imageUrl devopsbay/detectron2-cuda:v0 \
-  --machineType p2.xlarge \
-  --command "sudo python demo/app.py" \
-  --workspace https://github.com/Paperspace/object-detection-segmentation.git \               
-  --deploymentType Custom \
-  --clusterId <cluster id> \
-  --modelId <model id>
+deployments create /
+--name paperspace-detectron-demo-app /
+--instanceCount 1 /
+--imageUrl devopsbay/detectron2-cuda:v0 /
+--machineType V100 /
+--command "pip3 install -r demo/requirements.txt && python demo/app.py" /
+--workspace https://github.com/Paperspace/object-detection-segmentation.git 
+--deploymentType Custom 
+--clusterId <cluster id> 
+--modelId <model id> 
+--ports 8080
 ```
 ![Example](demo/samples/detect.jpeg?raw=true "Example Object Detection")
