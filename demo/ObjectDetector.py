@@ -34,10 +34,10 @@ class Detector:
 		# Additional Info when using cuda
 		if torch.cuda.is_available():
 			self.cfg.MODEL.DEVICE = "gpu"
-			print(torch.cuda.get_device_name(0))
-			print('Memory Usage:')
-			print('Allocated:', round(torch.cuda.memory_allocated(0) / 1024 ** 3, 1), 'GB')
-			print('Cached:   ', round(torch.cuda.memory_cached(0) / 1024 ** 3, 1), 'GB')
+			print(torch.cuda.get_device_name(0), flush=True)
+			print('Memory Usage:', flush=True)
+			print('Allocated:', round(torch.cuda.memory_allocated(0) / 1024 ** 3, 1), 'GB', flush=True)
+			print('Cached:   ', round(torch.cuda.memory_cached(0) / 1024 ** 3, 1), 'GB', flush=True)
 		else:
 			# set device to cpu
 			self.cfg.MODEL.DEVICE = "cpu"
@@ -47,7 +47,7 @@ class Detector:
 		model_dir = os.path.abspath(os.environ.get('PS_MODEL_PATH', ''))
 		model_path = os.path.join(model_dir, '/detectron/model_final.pth')
 		if os.path.isfile(model_path):
-			print('Using Trained Model {}'.format(model_path))
+			print('Using Trained Model {}'.format(model_path), flush=True)
 			self.cfg.MODEL.WEIGHTS = model_path
 		else:
 			model_path = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/"+self.model)
@@ -98,6 +98,7 @@ class Detector:
 			logger.add_counter("inference_count")
 			logger["inference_count"].inc()
 			logger.push_metrics()
+			print('Logged Inference Count', flush=True)
 		except:
 			pass
 		return img
