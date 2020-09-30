@@ -44,7 +44,7 @@ class Detector:
 
 		# get Model
 
-		model_path = os.path.abspath('/models/detectron/model_final.pth')
+		model_path = os.path.abspath('/models/model/detectron/model_final.pth')
 		if os.path.isfile(model_path):
 			print('Using Trained Model {}'.format(model_path), flush=True)
 		else:
