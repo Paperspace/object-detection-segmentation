@@ -93,12 +93,13 @@ class Detector:
 		img = Image.fromarray(np.uint8(v.get_image()[:, :, ::-1]))
 		# write to jpg
 		# cv.imwrite('img.jpg',v.get_image())
-
-		logger = MetricsLogger()
-		logger.add_counter("inference_count")
-		logger["inference_count"].inc()
-		logger.push_metrics()
-
+		try:
+			logger = MetricsLogger()
+			logger.add_counter("inference_count")
+			logger["inference_count"].inc()
+			logger.push_metrics()
+		except:
+			pass
 		return img
 
 
