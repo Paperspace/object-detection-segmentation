@@ -128,3 +128,18 @@ deployments create /
 --ports 8080
 ```
 ![Example](demo/samples/detect.jpeg?raw=true "Example Object Detection")
+
+### Adding custom metrics to Inference app
+
+Inside demo/ObjectDetector.py you will find a simple example to push custom metrics into gradient.
+[Docs](https://docs.paperspace.com/gradient/metrics/push-metrics)
+
+Example code
+```
+from gradient_utils.metrics import MetricsLogger
+
+logger = MetricsLogger()
+logger.add_counter("inference_count")
+logger["inference_count"].inc()
+logger.push_metrics()
+```
