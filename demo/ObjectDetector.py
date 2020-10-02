@@ -94,7 +94,8 @@ class Detector:
 			logger["inference_count"].inc()
 			logger.push_metrics()
 			print('Logged Inference Count', flush=True)
-		except:
+		except Exception as e:
+			print('Metrics exception {}'.format(str(e)), flush=True)
 			pass
 		return img
 
