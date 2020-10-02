@@ -86,17 +86,17 @@ class Detector:
 
 		# get image 
 		img = Image.fromarray(np.uint8(v.get_image()[:, :, ::-1]))
-		# write to jpg
-		# cv.imwrite('img.jpg',v.get_image())
+
+		logger = MetricsLogger()
 		try:
-			logger = MetricsLogger()
 			logger.add_counter("inference_count")
-			logger["inference_count"].inc()
-			logger.push_metrics()
-			print('Logged Inference Count', flush=True)
 		except Exception as e:
 			print('Metrics exception {}'.format(str(e)), flush=True)
 			pass
+		logger["inference_count"].inc()
+		logger.push_metrics()
+		print('Logged Inference Count', flush=True)
+
 		return img
 
 
