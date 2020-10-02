@@ -16,6 +16,9 @@ from PIL import Image
 
 from gradient_utils.metrics import MetricsLogger
 
+logger = MetricsLogger()
+logger.add_counter("inference_count")
+
 
 class Detector:
 
@@ -87,12 +90,7 @@ class Detector:
 		# get image 
 		img = Image.fromarray(np.uint8(v.get_image()[:, :, ::-1]))
 
-		logger = MetricsLogger()
-		try:
-			logger.add_counter("inference_count")
-		except Exception as e:
-			print('Metrics exception {}'.format(str(e)), flush=True)
-			pass
+		# Push Metrics
 		logger["inference_count"].inc()
 		logger.push_metrics()
 		print('Logged Inference Count', flush=True)
