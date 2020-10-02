@@ -43,7 +43,6 @@ class Detector:
 			self.cfg.MODEL.DEVICE = "cpu"
 
 		# get Model
-
 		model_path = os.path.abspath('/models/model/detectron/model_final.pth')
 		if os.path.isfile(model_path):
 			print('Using Trained Model {}'.format(model_path), flush=True)
@@ -54,8 +53,6 @@ class Detector:
 		# set the testing threshold for this model
 		self.cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7  
 
-		# build model from weights
-		#
 
 	# build model and convert for inference
 	def convert_model_for_inference(self):

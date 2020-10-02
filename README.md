@@ -11,6 +11,11 @@ Gradient - PyTorch-based modular object detection based on Detectron Demo
 <br>
 =================
 
+### Blog Post
+
+This Repository is related to our [Blog post](https://hellopaperspace.ghost.io/ghost/#/editor/post/5f64e487e3bfae00399b75e6) 
+
+
 ### Training & Evaluation
 
 Please check out [docs on using Experiments with Gradient](https://docs.paperspace.com/gradient/experiments/using-experiments)
