@@ -77,14 +77,14 @@ _Note: training on a single will take a long time, so be prepared to wait!_
 ```
 gradient experiments run singlenode \
   --name mask_rcnn \
-  --projectId <some project> \
-  --container devopsbay/detectron2-cuda:v0 \
-  --machineType p2.xlarge \
+  --projectId pr3qnl0g8 \
+  --container devopsbay/detectron2:v1 \
+  --machineType V100 \
   --command "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
   --workspace https://github.com/Paperspace/object-detection-segmentation.git \
   --datasetName small_coco \
   --datasetUri s3://paperspace-tiny-coco/small_coco.zip \
-  --clusterId <cluster id>
+  --clusterId cld01g8hd
 ```
 The coco dataset is downloaded to the `./data/coco/traing2017` directory.
 Model results are stored in the `./models` directory.
@@ -95,10 +95,10 @@ In order to run a an experiment on a [Gradient private cluster](https://docs.pap
 gradient experiments run multinode \
   --name mask_rcnn_multinode \
   --projectId <some project> \
-  --workerContainer devopsbay/detectron2-cuda:v0 \
+  --workerContainer devopsbay/detectron2:v1 \
   --workerMachineType p2.xlarge \
   --workerCount 7 \
-  --parameterServerContainer devopsbay/detectron2-cuda:v0 \
+  --parameterServerContainer devopsbay/detectron2:v1 \
   --parameterServerMachineType p2.xlarge \
   --parameterServerCount 1 \
   --experimentType GRPC \
@@ -118,7 +118,7 @@ This example will load previously trained model and launch a web app application
 deployments create /
 --name paperspace-detectron-demo-app /
 --instanceCount 1 /
---imageUrl devopsbay/detectron2-cuda:v0 /
+--imageUrl devopsbay/detectron2:v1 /
 --machineType V100 /
 --command "pip3 install -r demo/requirements.txt && python demo/app.py" /
 --workspace https://github.com/Paperspace/object-detection-segmentation.git 
