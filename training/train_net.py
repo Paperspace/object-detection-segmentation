@@ -226,7 +226,6 @@ def main(args):
 
 if __name__ == "__main__":
     args = default_argument_parser().parse_args()
-    print("Command Line Args:", args)
 
     dist_url = args.dist_url
     machine_rank = args.machine_rank
@@ -237,12 +236,13 @@ if __name__ == "__main__":
         dist_url = 'tcp://{}'.format(MASTER)
         machine_rank = int(os.getenv('INDEX'))
         num_machines = len(eval(os.getenv('WORKER_HOSTS')))
-        logger.info("Starting Multinode Training on Paperspace")
-        logger.info('Master: {}'.format(MASTER))
-        logger.info('Dist url: {}'.format(dist_url))
-        logger.info('Rank: {}'.format(machine_rank))
-        logger.info('Num of Machines: {}'.format(num_machines))
-
+        print("### Starting Multinode Training on Paperspace ###")
+        print('Master: {}'.format(MASTER))
+        print('Dist url: {}'.format(dist_url))
+        print('Rank: {}'.format(machine_rank))
+        print('Num of Machines: {}'.format(num_machines))
+        
+    print("Command Line Args:", args)
     launch(
         main,
         args.num_gpus,
