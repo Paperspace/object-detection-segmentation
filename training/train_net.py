@@ -215,6 +215,7 @@ def main(args):
 
     distributed = comm.get_world_size() > 1
     if distributed:
+        logger.info('\n #### DISTRIBUTED TRAINING#### \n')
         model = DistributedDataParallel(
             model, device_ids=[comm.get_local_rank()], broadcast_buffers=False
         )
@@ -231,12 +232,13 @@ if __name__ == "__main__":
     machine_rank = args.machine_rank
     num_machines = args.num_machines
     # Read Multinode
-    if 'TF_CONFIG' in os.environ:
-        MASTER = os.environ.get('MASTER')[0]
-        dist_url = 'tcp://{}'.format(MASTER)
-        machine_rank = int(os.environ.get('INDEX'))
-        num_machines = len(eval(os.environ.get('WORKER_HOSTS')))
-        print("Starting Multinode Training on Paperspace", flush=True)
+    # if 'TF_CONFIG' in os.environ:
+    MASTER = os.environ.get('MASTER')[0]
+    dist_url = 'tcp://{}'.format(MASTER)
+    machine_rank = int(os.environ.get('INDEX'))
+    num_machines = len(eval(os.environ.get('WORKER_HOSTS')))
+    logger.info("Starting Multinode Training on Paperspace")
+
     launch(
         main,
         args.num_gpus,
