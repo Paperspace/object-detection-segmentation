@@ -232,7 +232,7 @@ if __name__ == "__main__":
     num_machines = args.num_machines
     # Read Multinode
     if 'TF_CONFIG' in os.environ:
-        MASTER = os.getenv('MASTER')[0]
+        MASTER = eval(os.getenv('MASTER'))[0]
         dist_url = 'tcp://{}'.format(MASTER)
         machine_rank = int(os.getenv('INDEX'))
         num_machines = len(eval(os.getenv('WORKER_HOSTS')))
@@ -241,7 +241,7 @@ if __name__ == "__main__":
         print('Dist url: {}'.format(dist_url))
         print('Rank: {}'.format(machine_rank))
         print('Num of Machines: {}'.format(num_machines))
-        
+
     print("Command Line Args:", args)
     launch(
         main,
