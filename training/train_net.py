@@ -231,11 +231,11 @@ if __name__ == "__main__":
     machine_rank = args.machine_rank
     num_machines = args.num_machines
     # Read Multinode
-    if os.environ.get('TF_CONFIG'):
+    if 'TF_CONFIG' in os.environ:
         MASTER = os.environ.get('MASTER')[0]
         dist_url = 'tcp://{}'.format(MASTER)
         machine_rank = int(os.environ.get('INDEX'))
-        num_machines = len(os.environ.get('WORKER_HOSTS'))
+        num_machines = len(eval(os.environ.get('WORKER_HOSTS')))
         print("Starting Multinode Training on Paperspace", flush=True)
     launch(
         main,
