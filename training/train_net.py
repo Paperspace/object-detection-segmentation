@@ -232,7 +232,7 @@ if __name__ == "__main__":
     num_machines = args.num_machines
     # Read Multinode
     if os.environ.get('TF_CONFIG'):
-        MASTER =  os.environ.get('MASTER')[0]
+        MASTER = os.environ.get('MASTER')[0]
         dist_url = 'tcp://{}'.format(MASTER)
         machine_rank = int(os.environ.get('INDEX'))
         num_machines = len(os.environ.get('WORKER_HOSTS'))
