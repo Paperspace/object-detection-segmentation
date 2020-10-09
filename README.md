@@ -76,15 +76,15 @@ _Note: training on a single will take a long time, so be prepared to wait!_
 
 ```
 gradient experiments run singlenode \
-  --name mask_rcnn \
+  --name detectron2-demo \
   --projectId pr3qnl0g8 \
   --container devopsbay/detectron2:v1 \
-  --machineType V100 \
+  --machineType P4000 \
   --command "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
   --workspace https://github.com/Paperspace/object-detection-segmentation.git \
   --datasetName small_coco \
   --datasetUri s3://paperspace-tiny-coco/small_coco.zip \
-  --clusterId cld01g8hd
+  --clusterId <Cluster ID>
 ```
 The coco dataset is downloaded to the `./data/coco/traing2017` directory.
 Model results are stored in the `./models` directory.
@@ -96,14 +96,14 @@ gradient experiments run multinode \
   --name mask_rcnn_multinode \
   --projectId <some project> \
   --workerContainer devopsbay/detectron2:v1 \
-  --workerMachineType p2.xlarge \
+  --workerMachineType P4000 \
   --workerCount 7 \
   --parameterServerContainer devopsbay/detectron2:v1 \
-  --parameterServerMachineType p2.xlarge \
+  --parameterServerMachineType P4000 \
   --parameterServerCount 1 \
   --experimentType GRPC \
-  --workerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
-  --parameterServerCommand "sudo python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
+  --workerCommand "python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
+  --parameterServerCommand "ython training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_1x.yaml --num-machines 8 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl  OUTPUT_DIR /artifacts/models/detectron" \
   --workspace https://github.com/Paperspace/object-detection-segmentation.git \
   --datasetName small_coco \
   --datasetUri s3://paperspace-tiny-coco/small_coco.zip \
