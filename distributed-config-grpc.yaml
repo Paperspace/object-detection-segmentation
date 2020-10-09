@@ -6,11 +6,11 @@ datasets:
   - name: small_coco
     uri: s3://paperspace-tiny-coco/small_coco.zip
 workerCommand: "python training/train_net.py --config-file training/configs/mask_rcnn_R_50_FPN_3x.yaml --num-gpus 1 MODEL.WEIGHTS https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_1x/137257794/model_final_b275ba.pkl OUTPUT_DIR /artifacts/models/detectron"
-workerCount: 8
+workerCount: 4
 workspace: https://github.com/Paperspace/object-detection-segmentation.git
 parameterServerContainer: devopsbay/detectron2-cuda:v1
 parameterServerMachineType: P4000
-parameterServerCommand: "printenv && sleep infinity"
+parameterServerCommand: "sleep infinity"
 parameterServerCount: 1
 modelPath: /artifacts
 modelType: Custom
