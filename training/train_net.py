@@ -52,9 +52,10 @@ from detectron2.utils.events import (
 
 logger = logging.getLogger("detectron2")
 
-
 from detectron2.data.datasets import register_coco_instances
-register_coco_instances("coco_sample", {}, "/data/small_coco/small_coco/instances_train2017_small.json", "/data/small_coco/small_coco/train_2017_small")
+
+register_coco_instances("coco_sample", {}, "/data/small_coco/small_coco/instances_train2017_small.json",
+                        "/data/small_coco/small_coco/train_2017_small")
 
 
 def get_evaluator(cfg, dataset_name='coco_sample', output_folder=None):
@@ -84,12 +85,12 @@ def get_evaluator(cfg, dataset_name='coco_sample', output_folder=None):
         evaluator_list.append(COCOPanopticEvaluator(dataset_name, output_folder))
     if evaluator_type == "cityscapes_instance":
         assert (
-            torch.cuda.device_count() >= comm.get_rank()
+                torch.cuda.device_count() >= comm.get_rank()
         ), "CityscapesEvaluator currently do not work with multiple machines."
         return CityscapesInstanceEvaluator(dataset_name)
     if evaluator_type == "cityscapes_sem_seg":
         assert (
-            torch.cuda.device_count() >= comm.get_rank()
+                torch.cuda.device_count() >= comm.get_rank()
         ), "CityscapesEvaluator currently do not work with multiple machines."
         return CityscapesSemSegEvaluator(dataset_name)
     if evaluator_type == "pascal_voc":
@@ -131,7 +132,7 @@ def do_train(cfg, model, resume=False):
         model, cfg.OUTPUT_DIR, optimizer=optimizer, scheduler=scheduler
     )
     start_iter = (
-        checkpointer.resume_or_load(cfg.MODEL.WEIGHTS, resume=resume).get("iteration", -1) + 1
+            checkpointer.resume_or_load(cfg.MODEL.WEIGHTS, resume=resume).get("iteration", -1) + 1
     )
     max_iter = cfg.SOLVER.MAX_ITER
 
@@ -174,9 +175,9 @@ def do_train(cfg, model, resume=False):
             scheduler.step()
 
             if (
-                cfg.TEST.EVAL_PERIOD > 0
-                and iteration % cfg.TEST.EVAL_PERIOD == 0
-                and iteration != max_iter
+                    cfg.TEST.EVAL_PERIOD > 0
+                    and iteration % cfg.TEST.EVAL_PERIOD == 0
+                    and iteration != max_iter
             ):
                 do_test(cfg, model)
                 # Compared to "train_net.py", the test results are not dumped to EventStorage
@@ -225,12 +226,28 @@ def main(args):
 
 
 if __name__ == "__main__":
+    """
+        Launch multi-gpu or distributed training.
+        This function must be called on all machines involved in the training.
+        It will spawn child processes (defined by ``num_gpus_per_machine`) on each machine.
+
+        Args:
+            main_func: a function that will be called by `main_func(*args)`
+            num_gpus_per_machine (int): number of GPUs per machine
+            num_machines (int): the total number of machines
+            machine_rank (int): the rank of this machine
+            dist_url (str): url to connect to for distributed jobs, including protocol
+                           e.g. "tcp://127.0.0.1:8686".
+                           Can be set to "auto" to automatically select a free port on localhost
+            args (tuple): arguments passed to main_func
+    """
     args = default_argument_parser().parse_args()
 
     dist_url = args.dist_url
     machine_rank = args.machine_rank
     num_machines = args.num_machines
     # Read Multinode
+
     if 'TF_CONFIG' in os.environ:
         MASTER = eval(os.getenv('MASTER'))[0]
         dist_url = 'tcp://{}'.format(MASTER)
