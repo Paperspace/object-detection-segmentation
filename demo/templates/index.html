@@ -1,54 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		
-		<!-- Required dependencies -->
-		<script type="text/javascript"
-						src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.1/prop-types.min.js"></script>
-		<script type="text/javascript"
-						src="https://cdnjs.cloudflare.com/ajax/libs/react/16.3.2/umd/react.production.min.js"></script>
-		<script type="text/javascript"
-						src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.3.2/umd/react-dom.production.min.js"></script>
-		<script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
-		<script type="text/babel" data-presets="es2017, stage-3"
-						data-plugins="syntax-async-functions,transform-class-properties,transform-es2015-modules-umd, transform-async-to-generator"></script>
-		<!-- Optional dependencies -->
-		<script type="text/javascript"
-						src="https://cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.2.1/react-transition-group.min.js"></script>
-		<script type="text/javascript"
-						src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-		<script type="text/javascript"
-						src="https://cdnjs.cloudflare.com/ajax/libs/react-popper/0.10.4/umd/react-popper.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
 
-		<!-- Reactstrap -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/7.1.0/reactstrap.min.js"></script>
-		<script src=" https://cdnjs.cloudflare.com/ajax/libs/react-router/4.3.1/react-router.min.js"></script>
-
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-markdown/4.0.6/react-markdown.js"></script>
-		<script src="https://unpkg.com/react-router-dom@4.3.1/umd/react-router-dom.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-
-		<!-- Lastly, include your app's bundle -->
-		<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
-		<link type="text/css" rel="stylesheet" href="css/custom.css"/>
-
+    <meta name="author" content="Paperspace">
+    <title>Paperspace Detectron 2 Demo</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .body-dark {
+            background-color: #12141d;
+            font-family: Inter, sans-serif;
+        }
+    </style>
 </head>
 
-
 <body>
+<main role="main" class="container">
 
-<h1 style="text-align:center;">Paperspace Detectron 2 Demo</h1>
-<img src="https://console.paperspace.com/images/paperspaceW.png">
-<br>
-
-<h2>Detectron2 Instance Segmentation</h2>
-<p>Upload your file</p>
-<form action = "/model-serving/{{ model_id}}/detect" method = "POST" enctype = "multipart/form-data">
-	<input type = "file" name = "file" />
-	<input name = "submit" type = "submit"/>
-</form>
-<br>
+    <div class="row mb-3">
+        <div class="col-12">
+            <h2>Detectron2 Instance Segmentation</h2>
+            <p>Upload your file</p>
+            <form action="/model-serving/{{ model_id}}/detect" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file1">File</label>
+    <input type="file" class="form-control" id="file1" aria-describedby="file">
+    <small id="file1" class="form-text text-muted">Select Image</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>

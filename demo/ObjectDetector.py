@@ -16,8 +16,11 @@ from PIL import Image
 
 from gradient_utils.metrics import MetricsLogger
 
-logger = MetricsLogger()
-logger.add_counter("inference_count")
+try:
+	logger = MetricsLogger()
+	logger.add_counter("inference_count")
+except:
+	logger = None
 
 
 class Detector:
@@ -90,10 +93,11 @@ class Detector:
 		# get image 
 		img = Image.fromarray(np.uint8(v.get_image()[:, :, ::-1]))
 
-		# Push Metrics
-		logger["inference_count"].inc()
-		logger.push_metrics()
-		print('Logged Inference Count', flush=True)
+		if logger:
+			# Push Metrics
+			logger["inference_count"].inc()
+			logger.push_metrics()
+			print('Logged Inference Count', flush=True)
 
 		return img
 
