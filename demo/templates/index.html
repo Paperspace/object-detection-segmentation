@@ -8,7 +8,8 @@
     <meta name="author" content="Paperspace">
     <title>Paperspace Detectron 2 Demo</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
     <style>
         .body-dark {
             background-color: #12141d;
@@ -27,8 +28,8 @@
             <form action="/model-serving/{{ model_id}}/detect" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="file1">File</label>
-    <input type="file" class="form-control" id="file1" aria-describedby="file">
-    <small id="file1" class="form-text text-muted">Select Image</small>
+                    <input type="file" class="form-control" id="file1" aria-describedby="file">
+                    <small id="file1help" class="form-text text-muted">Select Image</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
