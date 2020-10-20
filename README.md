@@ -13,7 +13,7 @@ Gradient - PyTorch-based modular object detection based on Detectron Demo
 
 ### Blog Post
 
-This Repository is related to our [Blog post](https://hellopaperspace.ghost.io/ghost/#/editor/post/5f64e487e3bfae00399b75e6) 
+This Repository is related to our [Blog post](https://blog.paperspace.com/object-detection-segmentation-with-detectron2-on-paperspace-gradient/) 
 
 
 ### Training & Evaluation
