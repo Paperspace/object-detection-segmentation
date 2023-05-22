@@ -3,6 +3,6 @@ numpy
 flask
 pillow
 gunicorn
-requests==2.22.0
+requests==2.31.0
 gradient-utils
 
